@@ -60,17 +60,22 @@ void loop()
     names[0] = name; //store name in array
     names[0] = content.substring(1); //store card ID in array
 
-    /*
-    if (content.substring(1) == "BD 31 15 2B") //change here the UID of the card/cards that you want to give access
-    {
-        Serial.println("Authorized access");
-        Serial.println();
-        delay(3000);
+    //loop for all cards in array
+    for (int i = 0; i < 10; i++) {
+        Serial.print("Name: ");
+        Serial.println(names[i]);
+        Serial.print("Card ID: ");
+        Serial.println(cardIDs[i]);
+        if (content.substring(1) == names[0]) //change here the UID of the card/cards that you want to give access
+        {
+            Serial.println("Authorized access");
+            Serial.println();
+            delay(3000);
+        }
+        
+        else   {
+            Serial.println(" Access denied");
+            delay(3000);
+        }
     }
-    
-    else   {
-        Serial.println(" Access denied");
-        delay(3000);
-    }
-    */
 } 
