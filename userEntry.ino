@@ -22,6 +22,12 @@ void setup()
   Serial.println();
 
 }
+/*
+    Convert card number(0005880248) to hex - 0x59B9B8
+    Get last 8 hex numbers and convert in to 4 bit binary - 0000 0000 0101 1001 1011 1001 1011 1000
+    Above binary with even parity bits included - 0000000000010101001010111100101011110001
+*/
+
 void loop() 
 {
     // Look for new cards
@@ -57,8 +63,14 @@ void loop()
     // print name to serial monitor
     Serial.print("Name: ");
     Serial.println(name);
-    names[0] = name; //store name in array
-    names[0] = content.substring(1); //store card ID in array
+    //loop to store name in next array slot
+    for (int i = 0; i < 10; i++) {
+      if (names[i] == "") {
+        names[i] = name;
+        names[i] = content.substring(1);
+        break;
+      }
+    }
 
     //loop for all cards in array
     for (int i = 0; i < 10; i++) {
